@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>CodeBreaker Service</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <div class="nav">
+        <div class="user-info">
+            <span class="material-icons">account_circle</span>
+            <span id="n-disp" style="margin-left: 8px;">Загрузка...</span> 
+            <span id="r-disp"></span>
+        </div>
+        <div class="nav-actions">
+            <button class="icon-btn" onclick="openMyOrders()" title="Мои заказы">
+                <span class="material-icons">assignment</span>
+            </button>
+            <button class="icon-btn" onclick="openM('pModal')" title="Настройки">
+                <span class="material-icons">settings</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="hero">
+            <img src="https://i.postimg.cc/pdY3TFpF/Picsart-26-03-07-14-57-24-968.jpg" class="logo-img" alt="Logo">
+            <h1>CodeBreaker Service</h1>
+            <p>Мы команда которая воплощает:ваши идеи-в сайт.Не спешите идти за картой,платить не нужно!</p>
+        </div>
+
+        <div class="divider"></div>
+        
+        <div class="action-bar">
+            <button class="btn main-btn" onclick="openOrderModal()">
+                <span class="material-icons">add_box</span> ОСТАВИТЬ ЗАЯВКУ
+            </button>
+        </div>
+
+        <div id="mod-list" class="hidden mod-section">
+            <div class="mod-header">
+                <span class="material-icons">security</span>
+                <h3>Панель управления модератора</h3>
+            </div>
+            <button class="btn small-btn" onclick="refreshOrders()">
+                <span class="material-icons">refresh</span> Обновить заявки
+            </button>
+            <div id="orders-box"></div>
+        </div>
+    </div>
+
+    <div id="pModal" class="modal"><diа class="modal-content">
+        <h3><span class="material-icons">person_pin</span> Настройки аккаунта</h3>
+        <input type="text" id="in-name" placeholder="Введите имя">
+        <input type="password" id="in-code" placeholder="Код доступа">
+        <button class="btn" style="width: 100%;" onclick="saveP()">СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
+        <button class="text-btn" onclick="closeM('pModal')">ОТМЕНА</button>
+    </div></div>
+
+    <div id="myOrdersModal" class="modal"><div class="modal-content">
+        <h3><span class="material-icons">history_edu</span> Мои заявки</h3>
+        <div id="my-orders-box" class="scroll-box"></div>
+        <button class="text-btn" onclick="closeM('myOrdersModal')">ЗАКРЫТЬ</button>
+    </div></div>
+
+    <div id="oModal" class="modal"><div class="modal-content">
+        <h3 id="chat-title">Детали заявки</h3>
+        
+        <div id="order-ui">
+            <textarea id="o-text" rows="5" placeholder="Опишите, какой сайт вам нужен..."></textarea>
+            <button class="btn" style="width: 100%;" onclick="sendO()">
+                <span class="material-icons">send</span> ОТПРАВИТЬ
+            </button>
+        </div>
+        
+        <div id="chat-ui" class="hidden">
+            <div id="chat-msgs" class="chat-container"></div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="Сообщение...">
+                <button class="btn chat-send-btn" onclick="sendMsg()">
+                    <span class="material-icons">send</span>
+                </button>
+            </div>
+        </div>
+        <button class="text-btn" onclick="closeChatModal()">НАЗАД</button>
+    </div></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
