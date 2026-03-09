@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>CodeBreaker Service</title>
+    <title>CodeBreaker® Service</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
@@ -26,62 +26,117 @@
 
     <div class="main-container">
         <div class="hero">
-            <img src="https://i.postimg.cc/pdY3TFpF/Picsart-26-03-07-14-57-24-968.jpg" class="logo-img" alt="Logo">
-            <h1>CodeBreaker Service</h1>
+            <img src="https://i.postimg.cc/fV8ySQs9/image.png" class="logo-img" alt="CodeBreaker Logo">
+            <h1>CodeBreaker Service®</h1>
             <p>Мы команда которая воплощает:ваши идеи-в сайт.Не спешите идти за картой,платить не нужно!</p>
         </div>
 
-        <div class="divider"></div>
-        
-        <div class="action-bar">
+        <div class="action-bar" style="display: flex; gap: 10px; flex-direction: column;">
             <button class="btn main-btn" onclick="openOrderModal()">
                 <span class="material-icons">add_box</span> ОСТАВИТЬ ЗАЯВКУ
+            </button>
+            <button class="btn" style="background: #282828; color: #fff; border-color: #000;" onclick="openM('tariffModal')">
+                <span class="material-icons">star</span> ТАРИФЫ И УСЛУГИ
             </button>
         </div>
 
         <div id="mod-list" class="hidden mod-section">
             <div class="mod-header">
                 <span class="material-icons">security</span>
-                <h3>Панель управления модератора</h3>
+                <h3>Управление заказами</h3>
             </div>
-            <button class="btn small-btn" onclick="refreshOrders()">
-                <span class="material-icons">refresh</span> Обновить заявки
-            </button>
+            <button class="btn small-btn" onclick="refreshOrders()">Обновить базу</button>
             <div id="orders-box"></div>
         </div>
     </div>
 
-    <div id="pModal" class="modal"><diа class="modal-content">
-        <h3><span class="material-icons">person_pin</span> Настройки аккаунта</h3>
+    <div id="tariffModal" class="modal"><div class="modal-content dark-modal">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h3 style="margin: 0;">Максимум с PLUS</h3>
+            <span class="material-icons" onclick="closeM('tariffModal')" style="cursor: pointer;">close</span>
+        </div>
+
+        <div class="tariff-table-container">
+            <table class="tariff-table">
+                <tr>
+                    <th></th>
+                    <th class="col-free">Free</th>
+                    <th class="col-plus">PLUS</th>
+                </tr>
+                <tr>
+                    <td>Очередь</td>
+                    <td>До 14 дней</td>
+                    <td class="col-plus-bg">До 2 дней</td>
+                </tr>
+                <tr>
+                    <td>Разработка</td>
+                    <td>1-7 дней</td>
+                    <td class="col-plus-bg">От 1 часа</td>
+                </tr>
+                <tr>
+                    <td>Стек языков</td>
+                    <td>HTML/CSS/JS</td>
+                    <td class="col-plus-bg">3-7 + Бэкенд</td>
+                </tr>
+                <tr>
+                    <td>Строк кода</td>
+                    <td>До 200/файл</td>
+                    <td class="col-plus-bg">До 1000/файл</td>
+                </tr>
+                <tr>
+                    <td>Свой домен</td>
+                    <td>—</td>
+                    <td class="col-plus-bg"><span class="material-icons" style="font-size: 1rem;">check</span></td>
+                </tr>
+                <tr>
+                    <td>Ответ ТП</td>
+                    <td>До 2 дней</td>
+                    <td class="col-plus-bg">До 60 минут</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="sub-card active-sub">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                    <div style="font-weight: bold; font-size: 1.1rem;">На 1 месяц</div>
+                    <div style="font-size: 0.8rem; opacity: 0.7;">Отмена в любой момент</div>
+                </div>
+                <div style="font-weight: bold; font-size: 1.2rem;">50 ₽</div>
+            </div>
+        </div>
+
+        <button class="btn btn-buy-plus" onclick="buyPremium()">ПРИОБРЕСТИ ТАРИФ PLUS</button>
+    </div></div>
+
+    <div id="pModal" class="modal"><div class="modal-content">
+        <h3><span class="material-icons">person_pin</span> Настройки</h3>
         <input type="text" id="in-name" placeholder="Введите имя">
-        <input type="password" id="in-code" placeholder="Код доступа">
-        <button class="btn" style="width: 100%;" onclick="saveP()">СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
+        <input type="password" id="in-code" placeholder="Код доступа (для модераторов)">
+        <button class="btn" style="width: 100%; margin-top: 10px;" onclick="saveP()">СОХРАНИТЬ</button>
         <button class="text-btn" onclick="closeM('pModal')">ОТМЕНА</button>
     </div></div>
 
     <div id="myOrdersModal" class="modal"><div class="modal-content">
-        <h3><span class="material-icons">history_edu</span> Мои заявки</h3>
+        <h3><span class="material-icons">history_edu</span> Мои заказы</h3>
         <div id="my-orders-box" class="scroll-box"></div>
         <button class="text-btn" onclick="closeM('myOrdersModal')">ЗАКРЫТЬ</button>
     </div></div>
 
     <div id="oModal" class="modal"><div class="modal-content">
-        <h3 id="chat-title">Детали заявки</h3>
-        
+        <h3 id="chat-title">Оформление заказа</h3>
         <div id="order-ui">
-            <textarea id="o-text" rows="5" placeholder="Опишите, какой сайт вам нужен..."></textarea>
+            <input type="text" id="o-domain" placeholder="Свой домен (опционально для PLUS)">
+            <textarea id="o-text" rows="5" placeholder="Опишите техническое задание..."></textarea>
             <button class="btn" style="width: 100%;" onclick="sendO()">
-                <span class="material-icons">send</span> ОТПРАВИТЬ
+                <span class="material-icons">send</span> ОТПРАВИТЬ Заказ 
             </button>
         </div>
-        
         <div id="chat-ui" class="hidden">
             <div id="chat-msgs" class="chat-container"></div>
             <div class="chat-input-area">
                 <input type="text" id="chat-input" placeholder="Сообщение...">
-                <button class="btn chat-send-btn" onclick="sendMsg()">
-                    <span class="material-icons">send</span>
-                </button>
+                <button class="btn chat-send-btn" onclick="sendMsg()"><span class="material-icons">send</span></button>
             </div>
         </div>
         <button class="text-btn" onclick="closeChatModal()">НАЗАД</button>
@@ -89,4 +144,4 @@
 
     <script src="script.js"></script>
 </body>
-</html>
+        </html>
