@@ -1,82 +1,67 @@
 :root { 
-    --bg: #e3f2fd;          /* Мягкий голубой фон */
-    --accent: #64b5f6;      /* Небесно-голубой для акцентов */
-    --border: #0d47a1;      /* Глубокий синий для контуров */
-    --white: #ffffff; 
-    --accept: #81c784;      /* Приятный зеленый */
-    --reject: #e57373;      /* Мягкий красный */
+    --bg: #e3f2fd; --accent: #64b5f6; --border: #0d47a1; 
+    --white: #ffffff; --accept: #81c784; --reject: #e57373; --premium: #FFD700;
 }
 
 * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; -webkit-tap-highlight-color: transparent; }
-
 body { background: var(--bg); margin: 0; color: var(--border); line-height: 1.4; }
-
 .main-container { max-width: 500px; margin: 0 auto; padding-bottom: 40px; }
 
-.nav { 
-    display: flex; justify-content: space-between; align-items: center; 
-    padding: 15px 20px; background: var(--white); border-bottom: 4px solid var(--border);
-    position: sticky; top: 0; z-index: 50;
-}
-
+.nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; background: var(--white); border-bottom: 4px solid var(--border); position: sticky; top: 0; z-index: 50; }
 .nav-actions { display: flex; gap: 18px; }
 .user-info { display: flex; align-items: center; font-weight: bold; }
 
 .hero { padding: 30px 20px; text-align: center; }
-.logo-img { 
-    width: 120px; height: 120px; border: 4px solid var(--border); 
-    border-radius: 25px; box-shadow: 6px 6px 0px rgba(13, 71, 161, 0.2); margin-bottom: 15px;
-}
+.logo-img { width: 120px; height: 120px; border: 4px solid var(--border); border-radius: 25px; box-shadow: 6px 6px 0px rgba(13, 71, 161, 0.2); margin-bottom: 15px; object-fit: cover; background: #fff; }
 h1 { margin: 0; font-size: 1.8rem; text-transform: uppercase; color: var(--border); }
+.action-bar { padding: 0 20px 20px 20px; }
 
-.divider { height: 4px; background: var(--border); margin: 10px 0; }
-
-.action-bar { padding: 20px; }
-
-/* Кнопки в стиле Neo-brutalism */
-.btn { 
-    display: flex; align-items: center; justify-content: center; gap: 10px;
-    background: var(--white); border: 3px solid var(--border); 
-    padding: 12px 20px; font-weight: 800; cursor: pointer; 
-    box-shadow: 4px 4px 0px var(--border); text-transform: uppercase; transition: 0.1s;
-}
+.btn { display: flex; align-items: center; justify-content: center; gap: 10px; background: var(--white); border: 3px solid var(--border); padding: 12px 20px; font-weight: 800; cursor: pointer; box-shadow: 4px 4px 0px var(--border); text-transform: uppercase; transition: 0.1s; border-radius: 8px; }
 .btn:active { transform: translate(2px, 2px); box-shadow: 0px 0px 0px var(--border); }
-
-.main-btn { background: var(--accent); width: 100%; font-size: 1.1rem; border-radius: 8px; }
-.small-btn { font-size: 0.8rem; padding: 10px; margin: 0 auto 20px; border-radius: 5px; }
-
+.main-btn { background: var(--accent); width: 100%; font-size: 1.1rem; }
+.small-btn { font-size: 0.8rem; padding: 10px; margin: 0 auto 20px; }
 .icon-btn { background: none; border: none; cursor: pointer; color: var(--border); display: flex; }
 .text-btn { background: none; border: none; text-decoration: underline; width: 100%; padding: 15px; cursor: pointer; font-weight: bold; color: var(--border); }
 
-/* Модальные окна */
-.modal { 
-    display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background: rgba(13, 71, 161, 0.6); align-items: center; justify-content: center; z-index: 100; padding: 20px;
-}
+/* Модалки */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(13, 71, 161, 0.6); align-items: center; justify-content: center; z-index: 100; padding: 20px; }
 .modal-content { background: var(--bg); padding: 25px; border: 4px solid var(--border); width: 100%; max-width: 400px; border-radius: 15px; }
 
-/* Чат */
+/* ТАРИФНАЯ ТАБЛИЦА (Темная тема внутри модалки) */
+.dark-modal { background: #1a1a1a; color: #fff; border-color: #333; }
+.tariff-table-container { margin-bottom: 20px; }
+.tariff-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.tariff-table th, .tariff-table td { padding: 10px 5px; border-bottom: 1px solid #333; text-align: center; }
+.tariff-table td:first-child { text-align: left; opacity: 0.8; }
+.col-free { color: #888; font-weight: normal; }
+.col-plus { background: #5e35b1; color: #fff; border-radius: 10px 10px 0 0; padding: 10px; }
+.col-plus-bg { background: #4527a0; color: #fff; }
+.tariff-table tr:last-child .col-plus-bg { border-radius: 0 0 10px 10px; }
+
+.sub-card { border: 2px solid #5e35b1; background: #311b92; border-radius: 12px; padding: 15px; margin-bottom: 20px; cursor: pointer; }
+.active-sub { box-shadow: 0 0 0 2px #fff; }
+.btn-buy-plus { background: #7e57c2; border-color: #fff; color: #fff; width: 100%; box-shadow: 4px 4px 0px #fff; }
+
+.premium-icon { color: var(--premium); font-size: 1.2rem; margin-left: 5px; vertical-align: middle; text-shadow: 1px 1px 0 #000; }
+
 .chat-container { height: 300px; overflow-y: auto; border: 3px solid var(--border); background: #fff; margin-bottom: 15px; padding: 10px; display: flex; flex-direction: column; gap: 12px; border-radius: 8px; }
 .chat-input-area { display: flex; gap: 8px; }
 .chat-send-btn { padding: 10px; width: 55px; box-shadow: 2px 2px 0px var(--border); }
+.msg-user { align-self: flex-start; background: #e3f2fd; padding: 10px 14px; border: 2px solid var(--border); border-radius: 15px 15px 15px 0; max-width: 85%; color: #000; }
+.msg-mod { align-self: flex-end; background: var(--accent); padding: 10px 14px; border: 2px solid var(--border); border-radius: 15px 15px 0 15px; max-width: 85%; text-align: right; color: #000; }
 
-.msg-user { align-self: flex-start; background: #e3f2fd; padding: 10px 14px; border: 2px solid var(--border); border-radius: 15px 15px 15px 0; max-width: 85%; }
-.msg-mod { align-self: flex-end; background: var(--accent); padding: 10px 14px; border: 2px solid var(--border); border-radius: 15px 15px 0 15px; max-width: 85%; text-align: right; }
-
-/* Статусы заказов */
 .mod-section { padding: 20px; background: rgba(255,255,255,0.5); border-top: 4px solid var(--border); margin-top: 20px; }
 .mod-header { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 15px; }
-
-.order-card { border: 3px solid var(--border); padding: 15px; margin-bottom: 15px; background: var(--white); border-radius: 10px; text-align: left; }
-.status-badge { padding: 4px 10px; border: 2px solid var(--border); font-weight: bold; font-size: 0.7rem; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+.order-card { border: 3px solid var(--border); padding: 15px; margin-bottom: 15px; background: var(--white); border-radius: 10px; text-align: left; position: relative; color: #000; }
+.order-card.premium { border-color: #fbc02d; background: #fffdf2; border-width: 4px; }
+.status-badge { padding: 4px 10px; border: 2px solid var(--border); font-weight: bold; font-size: 0.7rem; border-radius: 20px; display: inline-block; margin-bottom: 10px; color: #000;}
 .status-Ожидает { background: #fff59d; }
 .status-Принят { background: var(--accept); }
 .status-Отклонен { background: var(--reject); }
 
-.rank-mod { background: #ffd700; border: 2px solid #000; padding: 2px 6px; font-size: 0.7rem; font-weight: bold; border-radius: 4px; margin-left: 5px; }
+.mod-tag { background: var(--border); color: #fff; font-size: 0.65rem; padding: 3px 6px; border-radius: 4px; float: right; }
+.rank-mod { background: #ffd700; border: 2px solid #000; padding: 2px 6px; font-size: 0.7rem; font-weight: bold; border-radius: 4px; margin-left: 5px; color: #000; }
 
-input, textarea { width: 100%; padding: 12px; border: 3px solid var(--border); margin-bottom: 15px; border-radius: 8px; font-size: 1rem; color: var(--border); outline: none; }
-input:focus, textarea:focus { border-color: var(--accent); }
-
+input, textarea { width: 100%; padding: 12px; border: 3px solid var(--border); margin-bottom: 15px; border-radius: 8px; font-size: 1rem; color: #000; outline: none; background: #fff; }
 .hidden { display: none !important; }
 .scroll-box { max-height: 350px; overflow-y: auto; padding-right: 5px; }
